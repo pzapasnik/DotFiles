@@ -1,6 +1,23 @@
-local lsp = require('lsp-zero')
-local telescope = require('telescope.builtin')
-lsp.preset("recommended")
+local lsp = require('lsp-zero').preset({
+	name = 'minimal',
+	set_lsp_keymaps = false,
+	manage_nvim_cmp = true,
+	suggest_lsp_servers = false,
+})
+
+local cmp = require('cmp')
+local cmp_select = { behavior = cmp.SelectBehavior.Select }
+local cmp_mappings = lsp.defaults.cmp_mappings({
+	['<C-k>'] = cmp.mapping.select_prev_item(cmp_select),
+	['<C-j>'] = cmp.mapping.select_next_item(cmp_select),
+	['<CR>'] = cmp.mapping.confirm({ select = true }),
+	["<C-Space>"] = cmp.mapping.complete(),
+})
+
+cmp_mappings['<Tab>'] = nil
+cmp_mappings['<S-Tab>'] = nil
+cmp_mappings['<C-f>'] = nil
+
 
 --lua-language-server config
 lsp.configure('lua_ls', {
@@ -31,19 +48,6 @@ lsp.ensure_installed({
 	'eslint',
 })
 
-local cmp = require('cmp')
-local cmp_select = { behavior = cmp.SelectBehavior.Select }
-local cmp_mappings = lsp.defaults.cmp_mappings({
-	['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-	['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-	['<CR>'] = cmp.mapping.confirm({ select = true }),
-	['<C-Space>'] = cmp.mapping.complete(),
-
-})
-
-
-cmp_mappings['<Tab>'] = nil
-cmp_mappings['<S-Tab>'] = nil
 
 lsp.set_preferences({
 	sign_icons = {}
@@ -64,8 +68,6 @@ lsp.on_attach(function(client, bufnr)
 		{ buffer = bufnr, remap = false, desc = "#LSP Show documentation / information" })
 	vim.keymap.set("n", "<leader>ls", function() vim.lsp.buf.workspace_symbol() end,
 		{ buffer = bufnr, remap = false, desc = "#LSP Search for workspace symbols" })
-	vim.keymap.set("n", "<leader>ld", function() vim.diagnostic.open_float() end,
-		{ buffer = bufnr, remap = false, desc = "#LSP Show Error diagnostic ?" })
 	vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end,
 		{ buffer = bufnr, remap = false, desc = "#LSP Go to next diagnostic" })
 	vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end,
@@ -78,8 +80,8 @@ lsp.on_attach(function(client, bufnr)
 		{ buffer = bufnr, remap = false, desc = "#LSP rename symbol and all references" })
 	vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end,
 		{ buffer = bufnr, remap = false, desc = "#LSP Show signature help" })
-	vim.keymap.set('i', '<C-s>', vim.lsp.buf.signature_help,
-		{ buffer = bufnr, remap = false, desc = "#lsp method signature help" })
+	vim.keymap.set("n", "<leader>ll", ":LspRestart<CR>",
+		{ buffer = bufnr, remap = false, desc = "#LSP restart" })
 end)
 
 

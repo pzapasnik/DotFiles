@@ -39,11 +39,9 @@ vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>",
 	{ desc = "#tmux Open new mutex window with project workspaces" })
 
 vim.keymap.set("n", "<C-h>", "<c-w>h", { desc = "#vim Move to the left window split" })
-vim.keymap.set("n", "<C-j>", "<c-w>j", { desc = "#vim Move to the window split below" })
-vim.keymap.set("n", "<C-k>", "<c-w>k", { desc = "#vim Move to the window split above" })
+vim.keymap.set("n", "<leader>j", "<c-w>j", { desc = "#vim Move to the window split below" })
+vim.keymap.set("n", "<leader>k", "<c-w>k", { desc = "#vim Move to the window split above" })
 vim.keymap.set("n", "<C-l>", "<c-w>l", { desc = "#vim Move to the right window split" })
-vim.keymap.set("n", "<leader>k", "<cmd>cnext<CR>zz", { desc = "#vim Navigate to the next error" })
-vim.keymap.set("n", "<leader>j", "<cmd>cprev<CR>zz", { desc = "#vim Navigate to the previous error" })
 
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
 	{ desc = "#vim Start a substitution command pre-filled with the word under cursor" })
@@ -68,3 +66,6 @@ vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, { desc = "#LSP format" })
 
 --plugin do vima ktory tworzy animacje spadajacych literek...
 vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
+
+vim.keymap.set("n", "<C-j>", "<cmd>cnext<CR>zz", { desc = "#vim Navigate to the next quickfix list item" })
+vim.keymap.set("n", "<C-k>", "<cmd>cprev<CR>zz", { desc = "#vim Navigate to the previeus quickfix list item" })
