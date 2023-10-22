@@ -88,7 +88,20 @@ require('dapui').setup(
 )
 
 require('telescope').load_extension('dap')
-require('dap.ext.vscode').load_launchjs("launch.json", {})
+
+local function get_dap_launch_json(paths)
+	for _, path in ipairs(paths) do
+		local f = io.open(path, "r")
+		if f then
+			f:close()
+			return path
+		end
+	end
+	return 'launch.json'
+end
+
+local dap_config_files = { '.debug/launch.json', '.vscode/launch.json', }
+require('dap.ext.vscode').load_launchjs(get_dap_launch_json(dap_config_files), {})
 
 -- launch dapui by default
 local dap, dapui = require("dap"), require("dapui")

@@ -52,6 +52,7 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>",
 vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.config/nvim/lua/zapas/packer.lua<CR>",
 	{ desc = "Open packer.lua configuration" })
 
+--plugin do vima Który tworzy animacje spadajacych literek...
 vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>",
 	{ desc = "Execute 'CellularAutomaton make_it_rain' command" })
 
@@ -64,8 +65,9 @@ vim.keymap.set("i", "<C-c>", "<Esc>")
 
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, { desc = "#LSP format" })
 
---plugin do vima ktory tworzy animacje spadajacych literek...
-vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
 
 vim.keymap.set("n", "<C-j>", "<cmd>cnext<CR>zz", { desc = "#vim Navigate to the next quickfix list item" })
 vim.keymap.set("n", "<C-k>", "<cmd>cprev<CR>zz", { desc = "#vim Navigate to the previeus quickfix list item" })
+
+--spell
+vim.keymap.set("n", "<leader>zr", "<cmd>spellr<CR>", { desc = "#vim #spell repeat all misspaling like last one" })

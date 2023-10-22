@@ -26,5 +26,7 @@ vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
 
-vim.cmd('iabbrev ret return')
+vim.opt.spelllang = "en_gb,pl"
+vim.opt.spell = true
 
+vim.cmd('iabbrev ret return')

@@ -62,6 +62,8 @@ lsp.on_attach(function(client, bufnr)
 
 	vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end,
 		{ buffer = bufnr, remap = false, desc = "#LSP Go to definition" })
+	vim.keymap.set('n', 'gi', function() vim.lsp.buf.implementation() end,
+		{ buffer = bufnr, remap = false, desc = "#LSP Go to implementation" })
 	vim.keymap.set("n", "<leader>lt", function() vim.lsp.buf.type_definition() end,
 		{ buffer = bufnr, remap = false, desc = "#LSP Go to Type definition" })
 	vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end,
@@ -74,8 +76,6 @@ lsp.on_attach(function(client, bufnr)
 		{ buffer = bufnr, remap = false, desc = "#LSP Go to previouse diagnostic" })
 	vim.keymap.set("n", "<leader>lc", function() vim.lsp.buf.code_action() end,
 		{ buffer = bufnr, remap = false, desc = "#LSP Execute code action" })
-	vim.keymap.set("n", "<leader>lr", function() telescope.lsp_references() end,
-		{ buffer = bufnr, remap = false, desc = "#LSP #telescope Telescope find references" })
 	vim.keymap.set("n", "<leader>ln", function() vim.lsp.buf.rename() end,
 		{ buffer = bufnr, remap = false, desc = "#LSP rename symbol and all references" })
 	vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end,

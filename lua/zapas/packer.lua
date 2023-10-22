@@ -24,6 +24,7 @@ return require('packer').startup(function(use)
 	use('jose-elias-alvarez/null-ls.nvim')
 	use('hrsh7th/cmp-nvim-lsp-signature-help')
 	use { "ray-x/lsp_signature.nvim" }
+	use { "nvim-treesitter/nvim-treesitter-context" }
 
 	--Debugger
 	use('mfussenegger/nvim-dap')
