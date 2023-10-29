@@ -42,6 +42,12 @@ return require('packer').startup(function(use)
 		},
 	}
 
+	--DataBaseExplorer
+	use { "tpope/vim-dadbod", requires = { "kristijanhusak/vim-dadbod-ui", "kristijanhusak/vim-dadbod-completion" },
+
+	}
+
+	--LSP-zero
 	use {
 		'VonHeikemen/lsp-zero.nvim',
 		branch = 'v2.x',
