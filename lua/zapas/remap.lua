@@ -5,7 +5,7 @@ vim.keymap.set("n", "<leader>wq", ":wq<CR>", { desc = "#vim save & quit" })
 vim.api.nvim_set_keymap('i', 'jk', '<Esc>', { noremap = true, desc = "#vim quit insert mode" })
 -- golang wsl linter
 vim.api.nvim_set_keymap('n', '<leader>lw', ':!wsl -fix %<cr>',
-	{ noremap = true, silent = true, desc = "#golang fix white spaces" })
+  { noremap = true, silent = true, desc = "#golang fix white spaces" })
 
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex, { desc = "#vim EX file mode" })
 --vim.keymap.set("v", "<leader>y", ":w !pbcopy", { desc = "#vim copy to clipbord" })
@@ -23,20 +23,20 @@ vim.keymap.set("n", "n", "nzzzv", { desc = "#vim Repeat search forward and cente
 vim.keymap.set("n", "N", "Nzzzv", { desc = "#vim Repeat search backward and center cursor" })
 --some-prime-plugin, tutorial ? to remove ?
 vim.keymap.set("n", "<leader>vwm", function() require("vim-with-me").StartVimWithMe() end,
-	{ desc = "#vim Start Vim With Me plugin" })
+  { desc = "#vim Start Vim With Me plugin" })
 vim.keymap.set("n", "<leader>svwm", function() require("vim-with-me").StopVimWithMe() end,
-	{ desc = "#vim Stop Vim With Me plugin" })
+  { desc = "#vim Stop Vim With Me plugin" })
 
 vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "#vim  Put yanked text before cursor in visual mode" })
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "#vim Yank selected text or current line into clipboard" })
 vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "#vim Yank current line into clipboard" })
 vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]],
-	{ desc = "#vim Delete selected text or current line without yanking it" })
+  { desc = "#vim Delete selected text or current line without yanking it" })
 
 vim.keymap.set("n", "Q", "<nop>", { desc = "Disable Q key mapping" })
 
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>",
-	{ desc = "#tmux Open new mutex window with project workspaces" })
+  { desc = "#tmux Open new mutex window with project workspaces" })
 
 vim.keymap.set("n", "<C-h>", "<c-w>h", { desc = "#vim Move to the left window split" })
 vim.keymap.set("n", "<leader>j", "<c-w>j", { desc = "#vim Move to the window split below" })
@@ -44,17 +44,17 @@ vim.keymap.set("n", "<leader>k", "<c-w>k", { desc = "#vim Move to the window spl
 vim.keymap.set("n", "<C-l>", "<c-w>l", { desc = "#vim Move to the right window split" })
 
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
-	{ desc = "#vim Start a substitution command pre-filled with the word under cursor" })
+  { desc = "#vim Start a substitution command pre-filled with the word under cursor" })
 
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>",
-	{ silent = true, desc = "#bash Make the current file executable" })
+  { silent = true, desc = "#bash Make the current file executable" })
 
 vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.config/nvim/lua/zapas/packer.lua<CR>",
-	{ desc = "Open packer.lua configuration" })
+  { desc = "Open packer.lua configuration" })
 
 --plugin do vima Który tworzy animacje spadajacych literek...
 vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>",
-	{ desc = "Execute 'CellularAutomaton make_it_rain' command" })
+  { desc = "Execute 'CellularAutomaton make_it_rain' command" })
 
 vim.keymap.set("n", "<leader><leader>", function() vim.cmd("so") end, { desc = "#vim Execute the 'so' command" })
 
@@ -71,3 +71,12 @@ vim.keymap.set("n", "<C-k>", "<cmd>cprev<CR>zz", { desc = "#vim Navigate to the 
 
 --spell
 vim.keymap.set("n", "<leader>zr", "<cmd>spellr<CR>", { desc = "#vim #spell repeat all misspaling like last one" })
+
+--json
+vim.api.nvim_set_keymap('n', '<leader>de',
+  '0y/"{<cr>:g!/^<c-r>0/d<cr>0d/"{<cr>x$x%:%s/\\\\\\\\\\\\"/\\\\\\\\"/g<cr>:s/\\\\"/"/g<cr>:%!jq .<cr>',
+  { noremap = true, desc = "#json #mimir normalize graph json" })
+
+--yank
+vim.keymap.set("n", "<leader>yp", ":let @\" = expand(\"%\")<CR>",
+  { desc = "#vim #yank put current file path to clipboard" })
